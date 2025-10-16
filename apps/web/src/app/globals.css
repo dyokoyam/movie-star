@@ -1,30 +1,41 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --background: #020617;
-  --foreground: #f8fafc;
-  --accent: #38bdf8;
-  --muted: #1e293b;
-  --border: rgba(148, 163, 184, 0.25);
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --accent: #3b82f6;
+  --muted: #f8fafc;
+  --border: rgba(15, 23, 42, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
-  --font-sans: var(--font-geist-sans, "Inter", system-ui, sans-serif);
-  --font-mono: var(--font-geist-mono, "JetBrains Mono", ui-monospace, SFMono-Regular,
-      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+@layer components {
+  .prose-gray {
+    @apply text-gray-800;
+  }
+
+  .prose-gray h1,
+  .prose-gray h2,
+  .prose-gray h3,
+  .prose-gray h4,
+  .prose-gray h5,
+  .prose-gray h6 {
+    @apply text-gray-900;
+  }
 }
