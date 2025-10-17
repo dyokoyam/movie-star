@@ -2,26 +2,13 @@
   "name": "movie-star",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "apps/web"
-  ],
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
-    "dev": "concurrently -k \"npm run web:dev\" \"npm run api:dev\"",
-    "web:dev": "npm run dev --workspace @movie-star/web",
-    "web:build": "npm run build --workspace @movie-star/web",
-    "web:lint": "npm run lint --workspace @movie-star/web",
-    "api:dev": "cd apps/api && go run ./cmd/api",
-    "api:test": "cd apps/api && go test ./...",
-    "api:lint": "cd apps/api && golangci-lint run ./...",
-    "db:up": "docker compose up db -d",
-    "db:down": "docker compose down",
-    "start": "npm run dev"
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.0"
-  },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=10"
+    "build": "pnpm --filter @movie-star/web build",
+    "dev": "pnpm --filter @movie-star/web dev",
+    "lint": "pnpm run lint:all",
+    "lint:all": "pnpm --recursive run lint",
+    "test": "pnpm --recursive run test",
+    "format": "pnpm --recursive run format"
   }
 }

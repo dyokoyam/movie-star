@@ -1,0 +1,6 @@
+database:
+  url: ${DATABASE_URL:-postgres://postgres:postgres@localhost:5432/movie_star?sslmode=disable}
+server:
+  port: ${PORT:-8080}
+logging:
+  level: info

@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.web.json",
+  "extends": "../../packages/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -12,7 +12,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",

@@ -1,0 +1,32 @@
+services:
+  api:
+    build: ../../apps/api
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/movie_star?sslmode=disable
+    depends_on:
+      - db
+  web:
+    command: pnpm --filter @movie-star/web dev --host 0.0.0.0
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/services/web.Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+    depends_on:
+      - api
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: movie_star
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

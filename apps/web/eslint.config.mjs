@@ -1,14 +1,8 @@
-import sharedConfig from "../../eslint.next.mjs";
+import nextConfig from "../../configs/eslint/next.mjs";
 
 export default [
-  ...sharedConfig,
+  ...nextConfig,
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ],
+    ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"],
   },
 ];
